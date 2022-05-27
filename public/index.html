@@ -8,7 +8,27 @@
     <link rel="stylesheet" href="/styles">
 </head>
 <body>
-    
+    <header>GeneFinder Tool</header>
+    <nav>Home</nav>
+    <div id="content">
+        <main>
+            <form>
+                <input type="text" id="search"><button id="search-btn">Search</button>
+            </form>
+            <h4 id="results-for"></h4>
+            <table id="search-results">
+                <tr>
+                    <th id="col-1"></th>
+                    <th id="col-2"></th>
+                    <th id="col-3"></th>
+                    <th id="col-4"></th>
+                </tr>
+            </table>
+            <div id="more-info"></div>
+        </main>
+        <aside id="favorites"></aside>
+    </div>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="/js"></script>
 </body>
 </html>

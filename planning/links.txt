@@ -1,0 +1,6 @@
+Figma:
+https://www.figma.com/file/fIiZKAyEe2BGPHPB3l2UdU/NCBI-API-Interface
+
+NCBI Documentation:
+https://www.ncbi.nlm.nih.gov/books/NBK25500/#chapter1.Uploading_UIDs_to_Entrez
+
