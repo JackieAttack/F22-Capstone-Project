@@ -8,19 +8,19 @@ app.use(express.json())
 
 //server endpoints
 app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, "/public/index.html"))
+    res.sendFile(path.join(__dirname, "../public/index.html"))
 })
 
 app.get("/styles", (req, res) => {
-    res.sendFile(path.join(__dirname, "/public/index.css"))
+    res.sendFile(path.join(__dirname, "../public/index.css"))
 })
 
 app.get("/js", (req, res) => {
-    res.sendFile(path.join(__dirname, "/public/index.js"))
+    res.sendFile(path.join(__dirname, "../public/index.js"))
 })
 
 //Front end interaction
-const {searchGeneId} = require('./server/controller')
+const {searchGeneId} = require('./controller')
 
 app.get("/search/:term", searchGeneId)
 //app.get("/moreInfo/:id", searchGeneId)
