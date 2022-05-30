@@ -76,8 +76,9 @@ function moreInfo(event) {
     </tr>`
 
     moreInfoSec.innerHTML = `
-    <h3>${gene.name} - Uid: ${gene.uid}</h3>
-    <div class="italic">${gene.organism.scientificname}</div>
+    <h3>${gene.name}</h3>
+    <p>Uid: ${gene.uid}</p>
+    <div class="italic">Species: ${gene.organism.scientificname} - TaxId: ${gene.organism.taxid}</div>
     <h4>Summary</h4>
     <p>${gene.summary}</p>`
     // axios.get(`/moreInfo/${id}`)
