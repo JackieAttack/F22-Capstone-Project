@@ -20,7 +20,7 @@ app.get("/js", (req, res) => {
 })
 
 //Front end interaction
-const {searchGeneId} = require('./controller')
+const {searchGeneId} = require('./server/controller')
 
 app.get("/search/:term", searchGeneId)
 //app.get("/moreInfo/:id", searchGeneId)
