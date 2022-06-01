@@ -1,10 +1,11 @@
+require('dotenv').config()
 const express = require('express')
 const cors = require("cors")
 const path = require('path')
 const app = express()
 
-app.use(cors());
 app.use(express.json())
+app.use(cors());
 
 //server endpoints
 app.get("/", (req, res) => {
@@ -19,12 +20,21 @@ app.get("/js", (req, res) => {
     res.sendFile(path.join(__dirname, "../public/index.js"))
 })
 
+app.get("/icon", (req, res) => {
+    res.sendFile(path.join(__dirname, "../public//pictures/dna-icon-2316641_960_720.png"))
+})
+
+app.get("/background", (req, res) => {
+    res.sendFile(path.join(__dirname, "../public//pictures/dna-14.jpg"))
+})
+
 //Front end interaction
-const {searchGeneId} = require('./controller')
+const {searchGeneId, seed, postComment, returnComments} = require('./controller')
 
 app.get("/search/:term", searchGeneId)
-//app.get("/moreInfo/:id", searchGeneId)
-
+app.post('/seed', seed)
+app.post('/createcomment', postComment)
+app.get('/returncomments/:uid', returnComments)
 
 const port = process.env.PORT || 4000
 

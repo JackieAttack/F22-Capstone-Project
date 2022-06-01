@@ -1,46 +1,121 @@
 body {
     font-family: sans-serif;
     margin: 0;
+    background-image: url('/background');
 }
 
 header {
-    background-color: purple;
+    background-color: white;
+    color: #0190B0;
+    font-weight: 700;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 50px;
-    height: 75px;
+    height: 100px;
+    border: 1px solid lightgray;
 }
+
+#gene {
+    color: #00A5CB;
+}
+                                                                   
+#icon {
+    margin: 20px;
+    height: 70px;
+    width: 70px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 5px;
+}
+
 
 #content {
     display: flex;
     justify-content: flex-end;
+    margin-left: 15vw;
+    margin-right: 15vw;
 }
 
-/* #favorites {
-    display:inline-block;
-    width: 100px;
-    height: 80px;
-    background-color: black;
-} */
 
 form {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-evenly;
     align-items: center;
     height: 80px;
-    width: 100vw;
+    width: 70vw;
 }
 
 main {
     display: flex;
     flex-direction: column;
+    padding: 35px;
 }
 
 div {
     text-align: center;
 }
 
+table {
+    background-color: white;
+}
+
 .italic {
     font-style: italic;
+}
+
+.comments {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 200px;
+}
+
+.hidden {
+    display: none;
+}
+
+.comment-box {
+    height: 150px;
+    margin: 10px;
+}
+
+table, th, td {
+    border-collapse: collapse;
+    border: 1px solid;
+}
+
+.text-box {
+    background-color: white;
+    border: 1px solid lightgray;
+    padding: 20px;
+}
+
+.comment-card {
+    background-color: white;
+    border: 1px solid lightgray;
+    padding: 0px;
+    margin: 8px;
+    width: 600px;
+}
+
+.comment-header {
+    background-color: white;
+    border: 1px solid lightgray;
+    padding: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#comment-forum {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

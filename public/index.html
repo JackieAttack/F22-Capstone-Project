@@ -8,25 +8,23 @@
     <link rel="stylesheet" href="/styles">
 </head>
 <body>
-    <header>GeneFinder Tool</header>
-    <nav>Home</nav>
+    <header><div id="gene">Gene</div>Finder<img id="icon" src="/icon" alt="DNA graphic"></header>
+    
+    <nav>
+        
+    </nav>
     <div id="content">
         <main>
             <form>
-                <input type="text" id="search"><button id="search-btn">Search</button>
+                <label for="search">Enter a term to seach the NCBI gene database by relevance:</label>
+                <div><input type="text" id="search"><button id="search-btn">Search</button></div>
             </form>
             <h4 id="results-for"></h4>
-            <table id="search-results">
-                <tr>
-                    <th id="col-1"></th>
-                    <th id="col-2"></th>
-                    <th id="col-3"></th>
-                    <th id="col-4"></th>
-                </tr>
-            </table>
-            <div id="more-info"></div>
+            <table id="search-results"></table>
+            <section id="more-info"></section>
+            <aside id="comments" class="hidden"></aside>
+            <section id="comment-forum"></section>
         </main>
-        <aside id="favorites"></aside>
     </div>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="/js"></script>

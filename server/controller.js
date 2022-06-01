@@ -1,8 +1,20 @@
+require("dotenv").config();
+const Sequelize = require("sequelize");
 const axios = require('axios');
 
-const baseURL = 'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/'
+const{CONNECTION_STRING} = process.env;
 
-let searchArr = []
+const sequelize = new Sequelize(CONNECTION_STRING, {
+    dialect: 'postgres',
+    dialectOptions: {
+        ssl: {
+            rejectUnauthorized: false
+        }
+    }
+})
+
+
+const baseURL = 'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/'
 
 module.exports = {
 
@@ -15,7 +27,7 @@ module.exports = {
                 //get gene info
                 axios.get(`${baseURL}esummary.fcgi?db=gene&id=${geneIds}&retmode=json`)
                 .then((mdres) => {
-                    searchArr = Object.values(mdres.data.result)
+                    let searchArr = Object.values(mdres.data.result)
                     res.status(200).send(searchArr)
 
                 })
@@ -24,5 +36,45 @@ module.exports = {
                 })
             })
             .catch((err) => {console.log(err)})
-        }
+        },
+    seed: (req, res) => {
+        sequelize.query(
+                `
+                DROP TABLE IF EXISTS comments;
+                    
+                CREATE TABLE comments (
+                comment_id SERIAL PRIMARY KEY,
+                uid INTEGER,
+                content TEXT,
+                date_posted TIMESTAMP DEFAULT NOW(),
+                username VARCHAR(50)
+            );`)
+            .then(() => {
+            console.log("Database seeded.")
+            res.sendStatus(200)
+        }).catch((err) => {console.log(err)})
+    },
+    
+    postComment: (req, res) => {
+        const {uid, name, text} = req.body
+
+        sequelize.query(`
+        INSERT INTO comments(uid, content, username)
+        VALUES(${uid}, '${text}', '${name}');`)
+        .then((dbRes) => {
+            res.status(200).send(dbRes[0])
+        }).catch((err) => {console.log(err)})
+    },
+
+    returnComments: (req, res) => {
+        let {uid} = req.params
+        uid = +uid
+
+        sequelize.query(`
+        SELECT * FROM comments
+        WHERE uid = ${uid};
+        `).then((dbRes) => {
+            res.status(200).send(dbRes[0])
+        }).catch((err) => {console.log(err)})
+    }
 }
