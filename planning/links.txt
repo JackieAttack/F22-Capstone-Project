@@ -4,3 +4,7 @@ https://www.figma.com/file/fIiZKAyEe2BGPHPB3l2UdU/NCBI-API-Interface
 NCBI Documentation:
 https://www.ncbi.nlm.nih.gov/books/NBK25500/#chapter1.Uploading_UIDs_to_Entrez
 
+MVP Features:
+-Can search the ncbi gene database using a search bar
+-Can see a detailed view of each gene using the "more info" button
+-Can add and view comments in the detailed view that anyone can see and are saved to a database.

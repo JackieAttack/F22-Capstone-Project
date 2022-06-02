@@ -84,6 +84,12 @@ function moreInfo(event) {
     <div class="italic">Species: ${gene.organism.scientificname} - TaxId: ${gene.organism.taxid}</div>
     <h4>Summary</h4>
     <p class="text-box">${gene.summary}</p>
+    <table id="info-table">
+    <tr><td>Genetic Source</td><td>${gene.geneticsource}</td></tr>
+    <tr><td>Chromosome</td><td>${gene.chromosome}</td></tr>
+    <tr><td>Gene Weight</td><td>${gene.geneweight}</td></tr>
+    <tr><td>Map Location</td><td>${gene.maplocation}</td></tr>
+    </table>
     <button id="add-comment-${gene.uid}">Add Comment</button>`
 
     let commentBtn = document.querySelector(`#add-comment-${gene.uid}`)
@@ -94,6 +100,7 @@ function moreInfo(event) {
     .then((res) => {
         console.log(res.data)
         let commentsArr = res.data
+        commentForum.innerHTML = ``
         for(i = 0; i < commentsArr.length; i++) {
 
             let commentItem = document.createElement('div')
@@ -108,12 +115,8 @@ function moreInfo(event) {
         }
         
     }).catch((err) => {console.log(err)})
-
-
-    //let commentsArr = returnComments(gene.uid)
 }
 
-//let geneKeys = ['uid', 'chromosome', 'description','geneticsource', 'geneweight', 'name', 'nomenclaturename', 'nomenclaturesymbol', 'organism', 'otheraliases', 'otherdesignations', 'summary']
 
 function toggleCommentSec(event) {
     comments.classList.toggle('hidden')
@@ -148,18 +151,26 @@ function createComment(event) {
     axios.post(`/createcomment`, body)
     .then((res) => {
         comments.innerHTML = `<h5>Comment Added!</h5>`
+        axios.get(`/returncomments/${uid}`)
+        .then((res) => {
+            let commentsArr = res.data
+            commentForum.innerHTML = ``
+            for(i = 0; i < commentsArr.length; i++) {
+    
+                let commentItem = document.createElement('div')
+                commentItem.classList.add('comment-card')
+                commentItem.innerHTML = `
+                <div class="comment-header">
+                <h7>${commentsArr[i].username}:</h7>
+                <h9>${commentsArr[i].date_posted}</h9>
+                </div>
+                <p>${commentsArr[i].content}</p>`
+                commentForum.appendChild(commentItem)
+            }
+            
+        }).catch((err) => {console.log(err)})
     }).catch((err) => {console.log(err)})
 }
-
-// function returnComments(uid) {
-//     //insert uid
-//     //output all comments matching that uid
-//     axios.get(`/returncomments/${uid}`)
-//     .then((res) => {
-//         console.log(res.data)
-//         return res.data
-//     }).catch((err) => {console.log(err)})
-// }
 
 function resetToHome() {
     moreInfoSec.innerHTML = ``
